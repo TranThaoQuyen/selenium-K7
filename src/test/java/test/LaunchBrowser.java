@@ -1,5 +1,6 @@
 package test;
 
+import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,14 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LaunchBrowser {
     public static void main(String[] args) throws InterruptedException {
-        String currentProjectLocation = System.getProperty("user.dir");
-        String relativeChromeDriverPath = "/src/test/resources/drivers/chromedriver.exe";
-        String chromeDriverPath = currentProjectLocation.concat(relativeChromeDriverPath);
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--incognito");
-        WebDriver driver = new ChromeDriver(chromeOptions);
-        driver.get("https://sdetpro.com/");
+        WebDriver driver = DriverFactory.getChromeDriver();
+        driver.get("https://the-internet.herokuapp.com/");
         driver.manage().window().maximize();
 
         //DEBUG PURPOSE ONLY
